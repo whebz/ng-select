@@ -139,6 +139,18 @@
             }
         }
     }
+    .ng-undo-wrapper {
+        cursor: pointer;
+        position: relative;
+        width: 17px;
+        user-select: none;
+        .ng-undo {
+            display: inline-block;
+            font-size: 18px;
+            line-height: 1;
+            pointer-events: none;
+        }
+    }
     .ng-clear-wrapper {
         cursor: pointer;
         position: relative;

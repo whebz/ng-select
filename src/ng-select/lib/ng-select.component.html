@@ -56,6 +56,10 @@
         </ng-template>
     </ng-container>
 
+    <span class="ng-undo-wrapper">
+        <span class="ng-undo" aria-hidden="true" [ngClass]="undoIcon"></span>
+    </span>
+
     <span *ngIf="showClear()" class="ng-clear-wrapper" title="{{clearAllText}}">
         <span class="ng-clear" aria-hidden="true">×</span>
     </span>

@@ -130,6 +130,9 @@ $ng-select-bg: #ffffff !default;
                 .ng-clear-wrapper {
                     bottom: 14px;
                 }
+                .ng-undo-wrapper {
+                    bottom: 15px;
+                }
             }
             .ng-arrow-wrapper {
                 align-self: flex-end;
@@ -138,6 +141,10 @@ $ng-select-bg: #ffffff !default;
             .ng-clear-wrapper {
                 align-self: flex-end;
                 bottom: 7px;
+            }
+            .ng-undo-wrapper {
+                align-self: flex-end;
+                bottom: 8px;
             }
         }
     }
@@ -159,7 +166,8 @@ $ng-select-bg: #ffffff !default;
             &.ng-appearance-outline {
                 &.ng-has-value {
                     .ng-arrow-wrapper,
-                    .ng-clear-wrapper {
+                    .ng-clear-wrapper,
+                    .ng-undo-wrapper {
                         border-top: none;
                     }
                 }
@@ -167,6 +175,9 @@ $ng-select-bg: #ffffff !default;
                     top: 0;
                 }
                 .ng-clear-wrapper {
+                    top: 4px;
+                }
+                .ng-undo-wrapper {
                     top: 4px;
                 }
             }
@@ -211,10 +222,17 @@ $ng-select-bg: #ffffff !default;
                     padding-top: .1875em;
                 }
                 .ng-clear-wrapper,
-                .ng-arrow-wrapper {
+                .ng-arrow-wrapper,
+                .ng-undo-wrapper {
                     border-top: .84375em solid transparent;
                 }
             }
+        }
+    }
+    .ng-undo-wrapper {
+        color: $ng-select-secondary-text;
+        &:hover {
+            color: $ng-select-primary-text;
         }
     }
     .ng-clear-wrapper {

@@ -179,6 +179,12 @@ $ng-select-value-font-size: 0.9em !default;
             }
         }
     }
+    .ng-undo-wrapper {
+        color: darken($ng-select-border, 20);
+        &:hover .ng-undo {
+            color: #D0021B;
+        }
+    }
     .ng-clear-wrapper {
         color: darken($ng-select-border, 20);
         &:hover .ng-clear {

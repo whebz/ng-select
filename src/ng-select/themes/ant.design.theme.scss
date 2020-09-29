@@ -188,6 +188,34 @@ $ng-select-marked: #e6f7ff !default;
             }
         }
     }
+    .ng-undo-wrapper {
+        opacity: 0;
+        color: darken($ng-select-border, 20);
+        background: rgba(0, 0, 0, 0.25);
+        width: 12px;
+        height: 12px;
+        text-align: center;
+        border-radius: 12px;
+        vertical-align: middle;
+        transition: color .3s ease;
+        position: absolute;
+        right: 13px;
+        @include rtl {
+            left: 13px;
+            right: auto;
+        }
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.45);
+        }
+        .ng-undo {
+            color: #fff;
+            font-size: 9px;
+            position: absolute;
+            left: 3px;
+            line-height: 12px;
+        }
+    }
     .ng-clear-wrapper {
         opacity: 0;
         color: darken($ng-select-border, 20);

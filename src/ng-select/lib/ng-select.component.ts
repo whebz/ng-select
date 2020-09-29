@@ -112,6 +112,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() minTermLength = 0;
     @Input() editableSearchTerm = false;
     @Input() keyDownFn = (_: KeyboardEvent) => true;
+    @Input() undoIcon: string;
 
     @Input() @HostBinding('class.ng-select-typeahead') typeahead: Subject<string>;
     @Input() @HostBinding('class.ng-select-multiple') multiple = false;
@@ -119,6 +120,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() @HostBinding('class.ng-select-searchable') searchable = true;
     @Input() @HostBinding('class.ng-select-clearable') clearable = true;
     @Input() @HostBinding('class.ng-select-opened') isOpen = false;
+    @Input() @HostBinding('class.ng-select-can-undo') canUndo = false;
 
     @Input()
     get items() { return this._items };
@@ -153,6 +155,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Output('close') closeEvent = new EventEmitter();
     @Output('search') searchEvent = new EventEmitter<{ term: string, items: any[] }>();
     @Output('clear') clearEvent = new EventEmitter();
+    @Output('undo') undoEvent = new EventEmitter();
     @Output('add') addEvent = new EventEmitter();
     @Output('remove') removeEvent = new EventEmitter();
     @Output('scroll') scroll = new EventEmitter<{ start: number; end: number }>();
@@ -325,6 +328,11 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
             $event.preventDefault();
         }
 
+        if (target.classList.contains('ng-undo-wrapper')) {
+            this.handleUndoClick();
+            return;
+        }
+
         if (target.classList.contains('ng-clear-wrapper')) {
             this.handleClearClick();
             return;
@@ -368,6 +376,10 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
         this.clearEvent.emit();
 
         this._onSelectionChanged();
+    }
+
+    handleUndoClick() {
+        this.undoEvent.emit();
     }
 
     clearModel() {
@@ -511,6 +523,10 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
 
     showClear() {
         return this.clearable && (this.hasValue || this.searchTerm) && !this.disabled;
+    }
+
+    showUndo() {
+        return this.canUndo;
     }
 
     trackByOption = (_: number, item: NgOption) => {
