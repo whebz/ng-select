@@ -15,13 +15,13 @@ export class FormsSingleSelectExampleComponent implements OnInit {
         { value: '18', label: '18' },
         { value: '>18', label: 'More than 18' },
     ];
-
+    value: any = '<18';
     constructor(private fb: FormBuilder, private modalService: NgbModal) {
     }
 
     ngOnInit() {
         this.heroForm = this.fb.group({
-            age: [null, Validators.required],
+            age: [this.value, Validators.required],
         });
     }
 
@@ -35,5 +35,9 @@ export class FormsSingleSelectExampleComponent implements OnInit {
 
     showConfirm(content) {
         this.modalService.open(content);
+    }
+
+    undoHandler() {
+        this.heroForm.get('age').setValue(this.value);
     }
 }
